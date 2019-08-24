@@ -4,13 +4,20 @@ import _ from 'lodash'
 import { Item } from './src/resources/item/item.model'
 import { List } from './src/resources/list/list.model'
 import { User } from './src/resources/user/user.model'
+import { MongoMemoryServer } from 'mongodb-memory-server';
+const mongod = new MongoMemoryServer();
+
+// const url = async () => {
+//   console.log('HERE IS URI: ' + uri)
+//   return await mongod.getConnectionString()
+// };
+
+// const url =
+  // process.env.MONGODB_URI ||
+  // process.env.DB_URL ||
+  // 'mongodb://localhost:27017/tipe-devapi-testing'
 
 const models = { User, List, Item }
-
-const url =
-  process.env.MONGODB_URI ||
-  process.env.DB_URL ||
-  'mongodb://localhost:27017/tipe-devapi-testing'
 
 global.newId = () => {
   return mongoose.Types.ObjectId()
@@ -33,7 +40,7 @@ beforeEach(async done => {
   if (mongoose.connection.readyState === 0) {
     try {
       await mongoose.connect(
-        url + db,
+        await mongod.getConnectionString() + db,
         {
           useNewUrlParser: true,
           autoIndex: true
