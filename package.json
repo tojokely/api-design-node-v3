@@ -7,16 +7,16 @@
   "scripts": {
     "build": "babel src --out-dir dist",
     "test": "NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent",
-    "test-routes": "yarn test -t router",
-    "test-models": "yarn test -t model",
-    "test-controllers": "yarn test -t controllers",
-    "test-auth": "yarn test -t Authentication:",
-    "dev": "nodemon --exec yarn restart",
+    "test-routes": "npm run test -t router",
+    "test-models": "npm run test -t model",
+    "test-controllers": "npm run test -t controllers",
+    "test-auth": "npm run test -t Authentication:",
+    "dev": "nodemon --exec npm run restart",
     "restart": "rimraf dist && yarn build && yarn start",
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "bcrypt": "^3.0.2",
+    "bcryptjs": "*",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "cuid": "^2.1.4",
