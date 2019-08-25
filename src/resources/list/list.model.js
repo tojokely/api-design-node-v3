@@ -18,6 +18,7 @@ const listSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+//the combination of user and name must be unique
 listSchema.index({ user: 1, name: 1 }, { unique: true })
 
 export const List = mongoose.model('list', listSchema)
